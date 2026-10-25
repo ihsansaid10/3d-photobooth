@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3D OBJ Photobooth</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="top">
+  <b class="logo">◈ OBJ Photobooth</b>
+  <nav id="menus"></nav>
+  <span class="sp"></span>
+  <button data-a="undo" title="Undo (Ctrl+Z)" aria-label="Undo">↶</button>
+  <button data-a="redo" title="Redo (Ctrl+Y)" aria-label="Redo">↷</button>
+  <button class="go" data-a="png">📷 Render PNG</button>
+  <button class="jpg" data-a="jpg">JPG</button>
+</header>
+<main>
+  <nav id="tools"></nav>
+  <section id="vp">
+    <div id="stage"><div id="thirds"></div></div>
+    <div id="hud"></div>
+  </section>
+  <aside id="side">
+    <h4>Outliner</h4>
+    <ul id="outl"></ul>
+    <div id="tabs"></div>
+    <div id="props"></div>
+  </aside>
+</main>
+<footer id="status">
+  <span>Drag: orbit · Shift+drag / klik kanan: pan · Scroll: zoom · Q G R S: tool · F: frame · L: lock kamera · Del: hapus · ?: semua shortcut · drop file .obj / .glb ke viewport</span>
+  <span id="cnt"></span>
+</footer>
+
+<dialog id="dlgWelcome"><div class="dlg">
+  <h2>◈ OBJ Photobooth</h2>
+  <p>Studio foto 3D di browser: import model, atur langit, cahaya, material, lalu render PNG/JPG berkualitas tinggi.</p>
+  <div class="acts">
+    <button class="go" data-a="import" data-close>Import model<small>.obj atau .glb · atau drag &amp; drop ke viewport</small></button>
+    <button data-close>Mulai dari Sphere<small>Langsung bereksperimen dengan objek bawaan</small></button>
+    <button data-a="keys" data-close>Lihat keyboard shortcut<small>Biar kerja lebih cepat</small></button>
+  </div>
+  <p class="tiny">Menu ada di bar atas. Layar ini bisa dibuka lagi lewat Help → Welcome.</p>
+</div></dialog>
+
+<dialog id="dlgKeys"><div class="dlg">
+  <h2>Keyboard shortcuts</h2>
+  <div class="keys">
+    <span><kbd>Drag</kbd></span><span>Orbit kamera</span>
+    <span><kbd>Shift</kbd>+<kbd>Drag</kbd> / klik kanan</span><span>Pan</span>
+    <span><kbd>Scroll</kbd></span><span>Zoom</span>
+    <span><kbd>Q</kbd> <kbd>G</kbd> <kbd>R</kbd> <kbd>S</kbd></span><span>Select · Move · Rotate · Scale</span>
+    <span><kbd>F</kbd></span><span>Frame object terpilih / semua</span>
+    <span><kbd>Home</kbd></span><span>Reset kamera</span>
+    <span><kbd>5</kbd></span><span>Perspective ⇄ Orthographic</span>
+    <span><kbd>L</kbd></span><span>Lock kamera</span>
+    <span><kbd>Del</kbd> / <kbd>⌫</kbd></span><span>Hapus object</span>
+    <span><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Y</kbd></span><span>Undo / Redo</span>
+    <span><kbd>Ctrl</kbd>+<kbd>O</kbd></span><span>Import file</span>
+    <span><kbd>Esc</kbd></span><span>Tutup menu / batalkan pilihan</span>
+  </div>
+  <div class="acts"><button data-close>Tutup</button></div>
+</div></dialog>
+
+<div id="toast" role="status"></div>
+<input type="file" id="file" accept="*/*" multiple hidden>
+
+<script src="lib/three.min.js"></script>
+<script src="lib/OrbitControls.js"></script>
+<script src="lib/TransformControls.js"></script>
+<script src="lib/OBJLoader.js"></script>
+<script src="lib/GLTFLoader.js"></script>
+<script src="lib/RectAreaLightUniformsLib.js"></script>
+<!-- Urutan penting: config -> modul 3D (engine, objects) -> pendukung (history, export, ui) -> main -->
+<script src="js/config.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/objects.js"></script>
+<script src="js/history.js"></script>
+<script src="js/export.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
